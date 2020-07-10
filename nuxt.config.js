@@ -24,18 +24,24 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  env: process.env,
   css: [],
   loading: { color: '#0057ff', height: '3px' },
   plugins: [{ src: '~/plugins/logger' }, { src: '~/plugins/axios' }],
+  buildModules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-analytics'],
+  modules: ['@nuxtjs/axios'],
   components: [
     { path: '~/components/atoms', prefix: 'vue' },
     { path: '~/components/molecules', prefix: 'vue' },
     { path: '~/components/organisms', prefix: 'vue' },
     { path: '~/components/templates', prefix: 'vue' }
   ],
-  buildModules: ['@nuxtjs/tailwindcss'],
-  modules: ['@nuxtjs/axios'],
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    debug: {
+      sendHitTask: process.env.NODE_ENV === 'production'
+    }
+  },
   tailwindcss: {},
-  build: {},
-  env: process.env
+  build: {}
 }
